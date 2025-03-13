@@ -1,0 +1,33 @@
+/* تنسيق السبانات المتحركة  فقط */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+   background: #000;
+   background-image: linear-gradient(to right,#333 1px,transparent 1px),
+   linear-gradient(to bottom,#333 1px,transparent 1px);
+   background-size: 4vh 4vh;
+}
+.cursor{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    position: absolute;
+    top: 50px;
+    right:400px;
+}
+.box{
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00ff9a;
+    box-shadow: 0 0 15px #00ff9a,
+    0 0 10px #00ff9a;
+    z-index: 100;
+
+}

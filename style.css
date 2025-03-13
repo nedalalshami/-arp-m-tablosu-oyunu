@@ -1,0 +1,227 @@
+/* أسلوب عام */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+   background: #000;
+   background-image: linear-gradient(to right,#333 1px,transparent 1px),
+   linear-gradient(to bottom,#333 1px,transparent 1px);
+   background-size: 4vh 4vh;
+}
+
+.cursor{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    position: absolute;
+    top: 50px;
+    right:400px;
+}
+.box{
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00ff9a;
+    box-shadow: 0 0 15px #00ff9a,
+    0 0 10px #00ff9a;
+    z-index: 100;
+}
+
+/* توافقية الهاتف */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+h1,p,h2{
+    color: white;
+}
+.puan{
+    color: white;
+
+}
+.stars {
+    display: none;
+    font-size: 2rem;
+    color: gold;
+    animation: fadeOut 1.5s ease-out;
+}  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+#name{
+    width: max-content;
+    height: 50px;
+    border-radius: 20px;
+    border: 2px solid;
+    text-align: center;
+    font-size: 1.2rem;
+    background: transparent;
+    box-shadow: -2px 2px 3px grey;
+
+}
+#name:focus{
+    border: 5px double green;
+    background: url(meryem1.png);
+    background-repeat: no-repeat;
+background-size: 50px;
+color: white;
+
+}
+#button_sertafica{
+    border-radius: 20px;
+    border: 2px solid;
+    text-align: center;
+    font-size: 1.2rem;
+    background: transparent; 
+    box-shadow: -2px 1px 3px grey;
+    color: white;
+
+}
+#button_sertafica:hover{
+    background:linear-gradient(45deg, green,rgb(157, 239, 157),green);
+    color: #000;
+
+}
+.div_stars{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    right: 10px;
+}
+#button_back{
+    width: 100%;
+    background:linear-gradient(45deg,rgb(157, 239, 157),green,rgb(157, 239, 157));
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    height: 70px;
+    margin-top: 5px;
+    transition: background 0.5s;
+}
+#button_back:hover {
+    background:linear-gradient(45deg, green,rgb(157, 239, 157),green);
+}
+#button_start{
+    width:100%;
+    height: 40px;
+    border-radius: 10px;
+    background: transparent; 
+    font-size: 1.2rem;
+    color: white;
+
+}
+#button_start:hover{
+    background:linear-gradient(45deg, green,rgb(157, 239, 157),green);
+
+}
+#answer{
+    width:100%;
+    height: 40px;
+    border-radius: 10px;
+    background: white; 
+    font-size: 1.5rem; 
+    text-align: center; 
+    display: none;}
+
+#numTest{
+    line-height: 100px;
+    font-size: 3rem;
+    text-shadow: -2px 2px 5px grey;
+    color: white;
+
+}
+#button_answer_send{
+    width:100%;
+    height: 40px;
+    border-radius: 10px;
+    background: transparent; 
+    font-size: 1.2rem; 
+    text-align: center;  
+    margin-top: 10px;
+    color: white;
+}
+#button_answer_send:hover{
+    background:linear-gradient(45deg, green,rgb(157, 239, 157),green); 
+    color: #000;
+   
+
+}
+
+.sertifica {
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    border: 10px solid black;
+    text-align: center;
+    border-radius: 20px;
+    display: none;
+    /* background-color: white; */
+    background: linear-gradient(45deg,orange,white,green);
+    color: #000;
+}
+.sertifica>h1{
+    color: #000;
+    font-style: italic;
+}
+
+#div_pdf{
+    display: none;
+}
+marquee{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: -1;
+  top: -20vh;
+}
+#imza{
+    position: absolute;
+    width: 50px;
+    height:50px;
+}
+img{
+position: relative;
+    left: calc(-10px * var(--i));
+    top: calc(-80px * var(--i));
+    right: calc(50px * var(--i));  
+}
+@media (max-width: 768px) {
+    button {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .sertifica {
+        width: 100%;
+        padding: 15px;
+    }
+    .cursor{
+        position: absolute;
+        right:90%;
+    }
+}
+@media (min-width: 820px){
+
+}  .cursor{
+        position: absolute;
+        right:100%;
+    }
+    @media (max-width: 820px){
+
+    }  .cursor{
+            position: absolute;
+            right:100%;
+        }

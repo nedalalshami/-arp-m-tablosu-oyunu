@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="styleIndex.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+   <style>
+    body{
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #logo{
+        width: 100%;
+        height: 100%;
+    }
+            .lap{
+                position: relative;
+               /* width: 20%;
+                min-width: 350px;*/
+                width: 90%;
+                max-width: 600px;
+                height: 300px;
+                transform: rotateX(-30deg);
+             margin: 5px;
+            }
+            .div_display{
+                width: 500px;
+                height: 300px;
+                position: relative;
+                background: transparent;
+                border: 7px solid gray;
+                border-radius: 10px;
+                outline: 15px solid black;
+                outline-offset: -22px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 50px;
+                font-weight: bold;
+                color: white;
+              } 
+            
+        .buttons{
+            display: grid;
+            grid-template-columns: repeat(5,auto);
+            position: absolute;
+            top: 280px;
+           /*width:400px;
+           height: 150px;*/
+           width: 100%;
+           max-width: 600px;
+           height: 150px;
+           background: grey;
+         box-shadow: 0px  -1px 3px grey;
+    border-radius: 20px;
+    transform: rotateX(-50deg);
+        }
+        .buttons>span{
+            width: 60px;
+            height: 40px;
+          background: rgb(93, 91, 91);
+          border-radius: 10px;
+          box-shadow: -2px  -1px 3px rgb(43, 42, 42);
+          text-align: center;
+          font-size: 20px;
+          position: relative;
+          top: 5px;
+          line-height: 40px;
+           }
+           .buttons>span:hover{
+          box-shadow: -2px  -3px 6px grey;
+         font-size: 30px;
+         cursor: pointer;
+           }
+           
+         .buttons>span:nth-child(11){
+            position: absolute;
+            background: rgb(93, 91, 91);
+            top: 90%;
+            right: 0;
+            width: 99%;
+            height: 80px;
+            font-size: 2rem;
+         }
+          
+          .div_display::before{
+            content: '•';
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: red;
+            border-radius: 50%;
+            right: 50%;
+            top: 0;
+          }
+    a{
+        text-decoration: none;
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        box-shadow: -2px  -3px 6px grey;
+      text-align: center;
+      padding-top: 10px;
+      font-size: 2rem;
+      color: #000;
+      background:linear-gradient(45deg,rgb(157, 239, 157),green,rgb(157, 239, 157));
+    }
+    a:hover{
+        background:linear-gradient(45deg, green,rgb(157, 239, 157),green);
+    
+    }
+    @media(max-width:800px){
+       #display{
+    max-width: 350px;
+    
+    }
+    .buttons{
+        width: 350px;
+       }
+    .cursor{
+        position: absolute;
+        right:90%;
+    }
+    #display{
+        background: url(m1.png);
+        background-size: cover;
+        background-position-y: -100px;
+      }
+       }
+       
+    
+       @media (min-width: 820px){
+    
+    .buttons{
+        width: 100%;
+        height: 300px;
+    }
+    .buttons>span{
+        height: 80px;
+        width: 70px;
+        font-size: 2rem;
+    }
+    .cursor{
+        position: relative;
+        right:90%;
+    }
+    #display{
+        background: url(m1.png);
+        background-size: cover;
+        background-position-y: -200px;
+      }
+       }
+    /* الشاشات الكبيرة جدًا */
+    @media (min-width: 1600px) {
+        .lap {
+            max-width: 900px;
+            height: 500px;
+            background: red;
+        }
+        .div_display {
+            font-size: 4rem;
+            height: 400px;
+        }
+        .buttons {
+            max-width: 900px;
+            height: 200px;
+        }
+        .buttons > span {
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+        }
+        .cursor{
+            position: absolute;
+            right:90%;
+        }
+        #display{
+            background: url(m1.png);
+            background-size: cover;
+            background-position-y: -200px;
+          }
+    }
+
+        </style>
+
+</head>
+<body>
+    <div class="cursor"></div>
+ 
+    <!--  -->
+    <a href="test.html">Kendimizi test edelim ( buraya tıklayın ).</a>
+   <center>
+    <div class="lap" id="bac">
+        <div class="div_display" id="display">
+            <img src="windo.jpeg" id="logo">
+        </div>
+        
+    <div class="buttons">
+    
+        <span onclick="numWrite(5)">5</span>
+        <span onclick="numWrite(4)">4</span>
+        <span onclick="numWrite(3)">3</span>
+        <span onclick="numWrite(2)">2</span>
+        <span onclick="numWrite(1)">1</span>
+        <span onclick="numWrite(10)">10</span>
+        <span onclick="numWrite(9)">9</span>
+        <span onclick="numWrite(8)">8</span>
+        <span onclick="numWrite(7)">7</span>
+        <span onclick="numWrite(6)">6</span>
+        <span  onclick="hesapla()">Enter</span>
+</div>
+</div>
+
+</center>
+
+
+<script>
+    let firstValue = null;
+    let secondValue = null;
+let display =  document.getElementById('display')
+
+function numWrite(value) {
+    if (firstValue === null) {
+        firstValue = value;
+        display.innerHTML = firstValue;
+    } else if (secondValue === null) {
+        secondValue = value;
+        display.innerHTML = `${firstValue} × ${secondValue}`;
+    display.style.color = 'white'
+    }
+}
+///////////////////////
+
+    function hesapla() {
+       const images = ['meryem1.png','m1.png','m2.jpeg','m3.png','m4.jpeg','m5.jpeg','m6.jpeg','m7.jpeg']
+
+        if (firstValue !== null && secondValue !== null) {
+            let result = firstValue * secondValue;
+            document.getElementById('display').innerHTML = ` ${result} =  ${secondValue} ×  ${firstValue} `;
+            let lap = document.getElementById('bac')
+            let display = document.getElementById('display')
+       let bac = Math.floor(Math.random() * images.length)
+       const bacimg = images[bac]
+       display.style.backgroundImage = `url(${bacimg})`
+      display.style.backgroundSize = 'cover'
+     // display.style.backgroundPositionY = -60+'px'
+      firstValue = null;
+       secondValue = null;
+
+        }
+    }
+    //
+    document.addEventListener('DOMContentLoaded',() => {
+        let cursor = document.querySelector('.cursor')
+           for(let i = 0; i< 100; i++) {
+            let span = document.createElement('span')
+          span.classList.add('box')
+          span.style.setProperty('--i', i+1)
+          span.style.left = i*20 +'px'
+          span.style.filter = `hue-rotate(${i * 5}deg)`
+          cursor.appendChild(span)
+        }
+        
+        })
+        document.addEventListener('mousemove', e =>{
+          gsap.to(".box",{
+            x : e.clientX,
+            y : e.clientY,
+            stagger : 0.05
+          })
+        
+          
+        })
+      
+        
+</script>
+</body>
+</html>

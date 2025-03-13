@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="cursor"></div>
+ 
+    <!--  -->
+    <div class="div_stars">
+    <h1 class="star">⭐</h1>
+    <div class="stars">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
+    <h2 class="num_stars">0</h2>
+  </div>
+  <div class="name">
+    <input type="text" id="name" placeholder="adını yaz">
+    <button id="button_sertafica" onclick="sertifica_tak()">sertifica al </button>
+</div>
+</div>
+<button id="button_back" onclick="toHome()">Öğrenme sayfasına geri dön</button>
+
+    <p>Hızınızı test edin, 15 saniye içinde cevabı verin</p>
+  <div class="puan">
+    <p class="not">5000 veya daha fazla puan aldığınızda sertifika alacaksınız </p>
+   
+    <div class="sertifica"><img src="imza.png" id="imza">  </div>
+    
+<h1 id="time">⏲</h1>
+<h3 class="yourTime"></h3>
+<button id="button_start" type="button" onclick="testBaşla()">Başla</button>
+<div id="div_test">
+    <h2 id="numTest"></h2>
+    <input type="number" id="answer" placeholder="Çarpma işleminin sonucunu yazınız.">
+</div>
+<button id="button_answer_send" type="button" onclick="sendAnswer()">ok</button>
+
+<div class="back">
+    <marquee behavior="" direction="up">
+        <img src="meryem1.png" style="--i:1;width: 100px;border-radius:50%">
+        <img src="meryem1.png" style="--i:8;width: 100px;border-radius:50%">
+        <img src="meryem1.png" style="--i:6;width: 100px;border-radius:50%">
+        <img src="meryem1.png" style="--i:7;width: 100px;border-radius:50%">
+        <img src="meryem1.png" style="--i:3;width: 100px;border-radius:50%">
+        <img src="meryem1.png" style="--i:5;width: 100px;border-radius:50%">
+        <img src="meryem1.png" style="--i:4;width: 100px;border-radius:50%">
+        <img src="meryem1.png" style="--i:2;width: 100px;border-radius:50%">
+
+    </marquee>
+   </div>
+<script>
+    let numRandom, numRandom2
+    let countdown;
+    let timer;
+    let startTime; // متغير لتخزين وقت بدء الاختبار
+    let score = 0; // تخزين النقاط
+function testBaşla(){
+    let num =[0,1,2,3,4,5,6,7,8,9,10]
+     numRandom = num[Math.floor(Math.random() * num.length)]
+    numRandom2 = num[Math.floor(Math.random() * num.length)]
+    let numTest = document.getElementById('numTest')
+    answer.style.display='block'
+    yourTime.innerHTML=''
+numTest.innerHTML = `${numRandom } × ${numRandom2}`
+        // بدء العد التنازلي من 10
+        countdown = 15;
+        document.getElementById('time').innerHTML = countdown;
+     
+       clearInterval(timer); // إيقاف أي عد سابق
+  // تسجيل وقت البدء
+  startTime = new Date(); // الوقت الحالي عند بدء الاختبار
+
+        timer = setInterval(function() {
+            countdown--;
+            document.getElementById('time').innerHTML = countdown;
+            if (countdown <= 0) {
+                clearInterval(timer);
+               alert('Zaman doldu tekrar deneyin ⛔')
+               // document.getElementById('time').style.display = 'none';
+                      answer.style.display='none'
+                      newStart(); 
+            }
+        }, 1000);
+    }
+    let yourTime = document.querySelector('.yourTime')
+function newStart(){
+numTest.innerHTML = ''
+answer.style.display='none'
+}
+
+function sendAnswer(){
+
+       // إيقاف المؤقت عند إرسال الإجابة
+       clearInterval(timer);
+            // حساب الوقت المستغرق
+            let endTime = new Date(); // الوقت الحالي عند إرسال الإجابة
+            let timeTaken = Math.floor((endTime - startTime) / 1000); // الفرق بالثواني
+    let answer = document.getElementById('answer').value
+    let num_stars = document.querySelector('.num_stars')
+    let correctAnswer = numRandom * numRandom2
+    let conter = 0
+     
+   document.getElementById('answer').value = ''
+    if(parseInt(answer) === correctAnswer){
+        score += 100;
+        num_stars.textContent = score;
+    yourTime.innerHTML=`Doğru cevap  ${timeTaken} saniye sürdü: <p style="color:green;font-size:2rem"> ✔</p>`
+   yourTime.style.color ='white'
+   num_stars.style.color='white'
+    showStars();
+  
+}else{
+   let eksi = 5
+   score= score - 5
+        yourTime.innerHTML=`${timeTaken} saniye sonra yanlış cevap girdiniz eksi 5 puan  ❌ ` 
+        num_stars.textContent = score ;
+    
+    }
+    newStart();
+}
+function showStars() {
+    let stars = document.querySelector('.stars');
+    stars.style.display = 'block';
+   
+    setTimeout(() => {
+        stars.style.display = 'none';
+    },5000);
+}
+function toHome(){
+    window.location.href=('index.html')
+}
+ function hadiy(){
+    let name = document.querySelector('.name')
+    name.style.display = 'block'
+ }
+
+ function sertifica_tak(){
+    if(score >= 100){
+        let name = document.getElementById('name').value;
+        let sertifica = document.querySelector('.sertifica')    
+        sertifica.style.display = 'block';
+       sertifica.innerHTML =`
+ <img src="mezun.png" style="width:70px;">
+  <h1>Çarpım sertifikası</h1><br>
+     <h3>Tebrikler, Çocuklarımız Hayatımızdır web sitemizden en güzel sertifikayı aldınız.</h3><br>
+    <h2 style="color:black" id="name-sertifica"> adı soyadı : ${name}</h2>
+        <h3>
+            <pre>Artık tüm çarpım tablosunu ezberledin.
+                 <h1 style="color:black"> puan aldın :${score}</h1>
+                Umarım önümüzdeki günlerde unutmazsın.
+                 Her zaman tekrarla.</h3>
+            </pre><br><br>
+            <h3>Saygılarımızla, Çocuklarımız Hayatımızdır web sitesi</h3>
+            <img src="imza.png" style="height:70px"/>
+           <div id="div_pdf"><button id="save-pdf" onclick="savePdf()">حفظ كملف PDF</button></div>  
+ `
+
+ savePdf();
+    }else{
+        alert('Sertifikayı alabilmeniz için 5000 puan ve üzeri almanız gerekmektedir.')
+    }
+    }
+
+  
+      async function savePdf(){  
+      const { jsPDF } = window.jspdf;
+            let sertifica = document.querySelector('.sertifica');
+    
+            if (!sertifica || sertifica.style.display === 'none') {
+                alert("يجب أن تظهر الشهادة أولاً قبل التنزيل!");
+                return;
+            }
+    
+            // تحويل الشهادة إلى صورة
+            const canvas = await html2canvas(sertifica, { useCORS: true });
+            const imgData = canvas.toDataURL("image/png");
+    
+            // إنشاء ملف PDF
+            const pdf = new jsPDF({
+                orientation: "portrait",
+                unit: "mm",
+                format: "a4",
+            });
+    
+            // حساب حجم الصورة داخل ملف PDF
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+            const imgWidth = canvas.width;
+            const imgHeight = canvas.height;
+            const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+    
+            // إضافة الصورة إلى ملف PDF
+            pdf.addImage(imgData, "PNG", 0, 0, imgWidth * ratio, imgHeight * ratio);
+            
+            // تنزيل الملف باسم "sertifica.pdf"
+            pdf.save('sertifica.pdf');
+        }
+    
+////////
+  //
+  document.addEventListener('DOMContentLoaded',() => {
+    let cursor = document.querySelector('.cursor')
+       for(let i = 0; i< 100; i++) {
+        let span = document.createElement('span')
+      span.classList.add('box')
+      span.style.setProperty('--i', i+1)
+      span.style.left = i*20 +'px'
+      span.style.filter = `hue-rotate(${i * 5}deg)`
+      cursor.appendChild(span)
+    }
+    
+    })
+    document.addEventListener('mousemove', e =>{
+      gsap.to(".box",{
+        x : e.clientX,
+        y : e.clientY,
+        stagger : 0.05
+      })
+    
+    })
+  
+    
+
+</script>
+</body>
+</html>
