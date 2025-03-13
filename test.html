@@ -125,7 +125,7 @@ function sendAnswer(){
      
    document.getElementById('answer').value = ''
     if(parseInt(answer) === correctAnswer){
-        score += 5000;
+        score += 100;
         num_stars.textContent = score;
     yourTime.innerHTML=`Doğru cevap  ${timeTaken} saniye sürdü: <p style="color:green;font-size:2rem"> ✔</p>`
    yourTime.style.color ='white'
@@ -158,7 +158,7 @@ function toHome(){
  }
 
  function sertifica_tak(){
-    if(score >= 100){
+    if(score >= 5000){
         let name = document.getElementById('name').value;
         let sertifica = document.querySelector('.sertifica')    
         sertifica.style.display = 'block';
